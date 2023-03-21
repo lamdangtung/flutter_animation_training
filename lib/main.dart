@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: Duration(seconds: 5));
     _animation = Tween<double>(begin: 0.0, end: 2 * pi).animate(_controller);
     _controller.repeat();
   }
@@ -61,11 +61,14 @@ class _HomePageState extends State<HomePage>
           builder: (context, child) {
             return Transform(
               alignment: Alignment.center,
-              transform: Matrix4.identity()..rotateX(_animation.value),
+              transform: Matrix4.identity()
+                ..rotateZ(pi / 6)
+                ..rotateY(_animation.value),
               child: Container(
                 height: 200,
                 width: 200,
                 decoration: BoxDecoration(
+                  shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3),
@@ -81,7 +84,6 @@ class _HomePageState extends State<HomePage>
                     ),
                   ],
                   color: Colors.blue,
-                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
             );
